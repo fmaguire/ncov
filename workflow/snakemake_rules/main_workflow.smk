@@ -888,6 +888,7 @@ rule export:
             --metadata {input.metadata} \
             --node-data {input.node_data} \
             --auspice-config {input.auspice_config} \
+            --include-root-sequence \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --title {params.title:q} \
@@ -925,10 +926,14 @@ rule finalize:
     message: "Remove extraneous colorings for main build and move frequencies"
     input:
         auspice_json = rules.incorporate_travel_history.output.auspice_json,
-        frequencies = rules.tip_frequencies.output.tip_frequencies_json
+        frequencies = rules.tip_frequencies.output.tip_frequencies_json,
+        auspice_json_with_root_seq = rules.export.output.auspice_json
     output:
         auspice_json = "auspice/ncov_{build_name}.json",
-        tip_frequency_json = "auspice/ncov_{build_name}_tip-frequencies.json"
+        tip_frequency_json = "auspice/ncov_{build_name}_tip-frequencies.json",
+        root_sequence_json = "auspice/ncov_{build_name}_root-sequence.json"
+    params:
+        root_sequence_json = lambda wildcards, input: input.auspice_json_with_root_seq[:-5]+"_root-sequence.json"
     log:
         "logs/fix_colorings_{build_name}.txt"
     conda: config["conda_environment"]
@@ -937,5 +942,6 @@ rule finalize:
         {python:q} scripts/fix-colorings.py \
             --input {input.auspice_json} \
             --output {output.auspice_json} 2>&1 | tee {log} &&
-        cp {input.frequencies} {output.tip_frequency_json}
+        cp {input.frequencies} {output.tip_frequency_json} &&
+        cp {params.root_sequence_json} {output.root_sequence_json}
         """
