@@ -1,0 +1,121 @@
+builds:
+  north-america_canada_ontario_toronto: # name of the build; this can be anything
+    subsampling_scheme: custom-city # use a custom subsampling scheme defined below
+    region: North America
+    country: Canada
+    division: Ontario
+    location: Toronto
+
+  north-america_canada_ontario: # name of the build; this can be anything
+    subsampling_scheme: custom-province # use a custom subsampling scheme defined below
+    region: North America
+    country: Canada
+    division: Ontario
+
+  north-america_canada_novascotia: # name of the build; this can be anything
+    subsampling_scheme: custom-province # use a custom subsampling scheme defined below
+    region: North America
+    country: Canada
+    division: Nova Scotia
+
+  north-america_canada:
+    subsampling_scheme: custom-country
+    region: North America
+    country: Canada
+
+  north-america:
+    subsampling_scheme: region
+    region: North America
+
+  global:
+    subsampling_scheme: region_global
+    region: global
+
+# Define custom subsampling logic for county-level builds.
+subsampling:
+  custom-city:
+    # Focal samples for location
+    focal:
+      group_by: "year month"
+      seq_per_group: 10000 # increase if we need to
+      # Use augur filter's query argument to filter strains with pandas-style logic expressions.
+      # This can be easier to read than the corresponding filter by exclusion.
+      query: --query "(country == '{country}') & (division == '{division}') & (location == '{location}')"
+
+    # Samples that are genetically related to the focal samples
+    related:
+      group_by: "country year month"
+      seq_per_group: 20
+      exclude: "--exclude-where 'location={location}'"
+      priorities:
+        type: "proximity"
+        focus: "focal"
+
+    # Contextual samples from the rest of the world
+    contextual:
+      group_by: "country year month"
+      seq_per_group: 10
+      exclude: "--exclude-where 'location={location}'"
+
+  # Custom subsampling logic for divisions to sample all province samples
+  custom-province:
+    # Focal samples for division
+    division:
+      group_by: "year month"
+      seq_per_group: 10000 
+      exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division!={division}'"
+    # Contextual samples from division's country
+    country:
+      group_by: "division year month"
+      seq_per_group: 50
+      exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division={division}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    # Contextual samples from division's region
+    region:
+      group_by: "country year month"
+      seq_per_group: 20
+      exclude: "--exclude-where 'region!={region}' 'country={country}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    # Contextual samples from the rest of the world, excluding the current
+    # division to avoid resampling.
+    global:
+      group_by: "country year month"
+      seq_per_group: 5
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+
+  # custom country sampling logic to sample all national sequences
+  custom-country:
+    # Focal samples for country
+    country:
+      group_by: "division year month"
+      seq_per_group: 100000
+      exclude: "--exclude-where 'country!={country}'"
+    # Contextual samples from country's region
+    region:
+      group_by: "country year month"
+      seq_per_group: 20
+      exclude: "--exclude-where 'country={country}' 'region!={region}'"
+      priorities:
+        type: "proximity"
+        focus: "country"
+    # Contextual samples from the rest of the world,
+    # excluding the current region to avoid resampling.
+    global:
+      group_by: "country year month"
+      seq_per_group: 10
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "country"
+
+files:
+  auspice_config: "my_profiles/canadian_builds/my_auspice_config.json"
+  description: "my_profiles/canadian_builds/my_description.md"
+  colors: "my_profiles/canadian_builds/colors.tsv"

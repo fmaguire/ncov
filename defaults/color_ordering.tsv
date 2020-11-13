@@ -1,3 +1,18 @@
+### Canada
+division	British Columbia
+division	Alberta
+division	Canada
+division	Manitoba
+division	Ontario
+division	Quebec
+division	New Brunswick
+division	Nova Scotia
+division	Newfoundland and Labrador
+
+### Canada
+# Ontario
+location	Toronto
+location	Ottawa
 
 # Asia
 
@@ -2795,10 +2810,6 @@ location	Boston
 # Puerto Rico
 location	Ponce
 
-### Canada
-# Ontario
-location	Toronto
-location	Ottawa
 
 # Quebec
 location	Montérégie
@@ -4130,16 +4141,6 @@ division	Puerto Rico
 division	Virgin Islands
 division	Diamond Princess
 
-### Canada
-division	British Columbia
-division	Alberta
-division	Canada
-division	Manitoba
-division	Ontario
-division	Quebec
-division	New Brunswick
-division	Nova Scotia
-division	Newfoundland and Labrador
 
 ################
 
