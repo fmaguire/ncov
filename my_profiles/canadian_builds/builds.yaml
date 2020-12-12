@@ -1,11 +1,10 @@
 builds:
-  north-america_canada_ontario_toronto: # name of the build; this can be anything
-    subsampling_scheme: custom-city # use a custom subsampling scheme defined below
-    region: North America
-    country: Canada
-    division: Ontario
-    location: Toronto
-
+  #  north-america_canada_ontario_toronto: # name of the build; this can be anything
+  #    subsampling_scheme: custom-city # use a custom subsampling scheme defined below
+  #    region: North America
+  #    country: Canada
+  #    division: Ontario
+  #    location: Toronto
   north-america_canada_ontario: # name of the build; this can be anything
     subsampling_scheme: custom-province # use a custom subsampling scheme defined below
     region: North America
@@ -114,6 +113,45 @@ subsampling:
       priorities:
         type: "proximity"
         focus: "country"
+
+# trait reconstruction
+traits:
+  north-america_canada_ontario: 
+    columns: ["region", "country", "division"]
+  north-america_canada_novascotia: 
+    columns: ["region", "country", "division"]
+  north-america_canada: 
+    columns: ["region", "country", "division"]
+
+# incorporate exposure information
+exposure:
+  north-america_canada_ontario: 
+    trait: "region"
+    exposure: "region_exposure"
+    trait: "country"
+    exposure: "country_exposure"
+    trait: "division"
+    exposure: "division_exposure"
+
+# incorporate exposure information
+exposure:
+  north-america_canada_novascotia: 
+    trait: "region"
+    exposure: "region_exposure"
+    trait: "country"
+    exposure: "country_exposure"
+    trait: "division"
+    exposure: "division_exposure"
+
+# incorporate exposure information
+exposure:
+  north-america_canada: 
+    trait: "region"
+    exposure: "region_exposure"
+    trait: "country"
+    exposure: "country_exposure"
+    trait: "division"
+    exposure: "division_exposure"
 
 files:
   auspice_config: "my_profiles/canadian_builds/my_auspice_config.json"
