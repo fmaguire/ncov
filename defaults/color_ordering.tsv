@@ -629,6 +629,7 @@ location	Mitchells Plain
 location	Tygerberg
 location	Khayelitsha
 location	Stellenbosch
+location	Bitou
 location	Hessequa
 location	Mossel Bay
 location	Oudtshoorn
@@ -1287,6 +1288,7 @@ location	Moussy Le Neuf
 location	Compans
 location	Saint-Thibault-des-Vignes
 location	Chanteloup-en-Brie
+location	Egreville
 
 # Hauts de France
 location	Nogent-l'Artaud
@@ -1294,6 +1296,7 @@ location	Chateau-Thierry
 location	Crouy en Thelle
 location	Crépy en Valois
 location	Compiègne
+location	Genech
 location	Santes
 location	Lille
 
@@ -1371,6 +1374,7 @@ location	Ingersheim
 location	Ensisheim
 location	Reguisheim
 location	Biesheim
+location	Brumath
 location	Strasbourg
 location	Bischheim
 
@@ -1947,6 +1951,7 @@ location	Plzeň
 location	Chomutov
 location	Litvinov
 location	Teplice
+location	Třebenice
 location	Všebořice
 location	Sulejovice
 location	Libochovice
@@ -1970,8 +1975,10 @@ location	Dobrá Voda
 location	Jindřichův Hradec
 
 # Central Bohemian Region
+location	Malinová
 location	Příbram
 location	Králův Dvůr
+location	Chýně
 location	Únětice
 location	Zdiby
 location	Bášť
@@ -1982,9 +1989,12 @@ location	Zeleneč
 location	Čerčany
 location	Tehovec
 location	Tuklaty
+location	Kochánky
+location	Ondřejov
 location	Benátky nad Jizerou
 location	Mlada Boleslav
 location	Chrášťany
+location	Nymburk
 location	Poděbrady
 location	Kolin
 location	Kutná Hora
@@ -2001,6 +2011,7 @@ location	Pardubice
 
 # Hradec Králové Region
 location	Sběř
+location	Jičín
 
 # South Moravian Region
 location	Znojmo
@@ -2022,6 +2033,7 @@ location	Fryšták
 location	Prostějov
 
 # Moravian-Silesian Region
+location	Ostrava
 location	Frýdek-Místek
 location	Havířov
 location	Albrechtice
@@ -2589,6 +2601,9 @@ location	Cuenca EC
 # Bolivar EC
 location	Guaranda
 
+# Cañar
+location	Azogues
+
 # Zamora-Chinchipe
 location	Zamora
 location	Yantzaza
@@ -2602,12 +2617,16 @@ location	Quito
 location	Cayambe
 
 # Imbabura
+location	San Pablo EC
 location	Otavalo
 location	Ibarra
 location	Urcuqui
 
 # Carchi
 location	Awa Reserve
+
+# Morona Santiago
+location	Morona
 
 # Napo
 location	Tena
@@ -2796,7 +2815,7 @@ location	Quesada
 location	San Carlos
 
 # Heredia
-location	San Pablo
+location	San Pablo CR
 location	San Francisco CR
 location	Heredia
 location	San Rafael Heredia
@@ -3646,6 +3665,9 @@ division	New South Wales
 division	Tasmania
 division	Australian Capital Territory
 
+### Papua New Guinea
+division	Papua New Guinea
+
 ### Guam
 division	Guam
 
@@ -3984,6 +4006,7 @@ division	Luxembourg
 ### Switzerland
 division	Geneva
 division	Vaud
+division	Neuchâtel
 division	Fribourg
 division	Jura
 division	Solothurn
@@ -4498,13 +4521,16 @@ division	Esmeraldas
 division	Ecuador
 division	Azuay
 division	Bolivar EC
+division	Cañar
 division	Zamora-Chinchipe
 division	Chimborazo
 division	Pichincha
 division	Imbabura
 division	Carchi
+division	Morona Santiago
 division	Napo
 division	Pastaza
+division	Sucumbios
 division	Orellana
 
 ### Colombia
@@ -4768,6 +4794,7 @@ country	Japan
 # Oceania
 country	New Zealand
 country	Australia
+country	Papua New Guinea
 country	Guam
 
 # Africa
