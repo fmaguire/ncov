@@ -26,6 +26,41 @@
       "type": "categorical"
     },
     {
+      "key": "Nextstrain_clade",
+      "title": "Nextstrain clade",
+      "type": "categorical"
+    },
+    {
+      "key": "pangolin_lineage",
+      "title": "Pangolin lienage",
+      "type": "categorical"
+    },
+    {
+      "key": "GISAID_clade",
+      "title": "GISAID clade",
+      "type": "categorical"
+    },
+    {
+      "key": "division_exposure",
+      "title": "Admin Division of exposure",
+      "type": "categorical"
+    },
+    {
+      "key": "country_exposure",
+      "title": "Country of exposure",
+      "type": "categorical"
+    },
+    {
+      "key": "region_exposure",
+      "title": "Region of exposure",
+      "type": "categorical"
+    },
+    {
+      "key": "recency",
+      "title": "Submission Date",
+      "type": "categorical"
+    },
+    {
       "key": "host",
       "title": "Host",
       "type": "categorical"
@@ -56,31 +91,11 @@
       "type": "categorical"
     },
     {
-      "key": "recency",
-      "title": "Submission Date",
-      "type": "categorical"
-    },
-    {
       "key": "gisaid_epi_isl",
       "type": "categorical"
     },
     {
       "key": "genbank_accession",
-      "type": "categorical"
-    },
-    {
-      "key": "country_exposure",
-      "title": "Country of exposure",
-      "type": "categorical"
-    },
-    {
-      "key": "division_exposure",
-      "title": "Division of exposure",
-      "type": "categorical"
-    },
-    {
-      "key": "region_exposure",
-      "title": "Region of exposure",
       "type": "categorical"
     }
   ],
@@ -95,7 +110,7 @@
     "distance_measure": "num_date",
     "geo_resolution": "division",
     "map_triplicate": true,
-    "branch_label": "none"
+    "branch_label": "clade"
   },
   "filters": [
     "recency",
@@ -103,6 +118,7 @@
     "division",
     "country",
     "region",
+    "clade_membership",
     "host",
     "author"
   ],

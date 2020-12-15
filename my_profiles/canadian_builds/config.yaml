@@ -14,6 +14,9 @@ config:
   - sequences=data/sequences_2020-12-11_08-30.fasta
   - metadata=data/metadata_2020-12-11_17-24.tsv
 
+  # - sequences=data/example_sequences.fasta
+  # - metadata=data/example_metadata.tsv
+
 # Set the maximum number of cores you want Snakemake to use for this pipeline.
 cores: 8
 
