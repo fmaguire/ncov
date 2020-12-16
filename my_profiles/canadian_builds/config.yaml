@@ -11,8 +11,8 @@ configfile:
   - my_profiles/canadian_builds/builds.yaml # Pull in our list of desired builds
 
 config:
-  - sequences=data/sequences_2020-12-11_08-30.fasta
-  - metadata=data/metadata_2020-12-11_17-24.tsv
+  - sequences=data/sequences_2020-12-14_08-02.fasta
+  - metadata=data/metadata_2020-12-14_11-32.tsv
 
   # - sequences=data/example_sequences.fasta
   # - metadata=data/example_metadata.tsv
