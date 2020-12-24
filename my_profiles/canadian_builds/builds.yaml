@@ -5,17 +5,17 @@ builds:
   #    country: Canada
   #    division: Ontario
   #    location: Toronto
-  north-america_canada_ontario: # name of the build; this can be anything
-    subsampling_scheme: custom-province # use a custom subsampling scheme defined below
-    region: North America
-    country: Canada
-    division: Ontario
+  #north-america_canada_ontario: # name of the build; this can be anything
+  #  subsampling_scheme: custom-province # use a custom subsampling scheme defined below
+  #  region: North America
+  #  country: Canada
+  #  division: Ontario
 
-  north-america_canada_novascotia: # name of the build; this can be anything
-    subsampling_scheme: custom-province # use a custom subsampling scheme defined below
-    region: North America
-    country: Canada
-    division: Nova Scotia
+  #north-america_canada_novascotia: # name of the build; this can be anything
+  #  subsampling_scheme: custom-province # use a custom subsampling scheme defined below
+  #  region: North America
+  #  country: Canada
+  #  division: Nova Scotia
 
   north-america_canada:
     subsampling_scheme: canada
