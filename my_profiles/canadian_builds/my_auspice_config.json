@@ -1,8 +1,8 @@
 {
-  "title": "Canadian Nextstrain Builds",
-  "build_url": "https://github.com/fmaguire/ncov/",
+  "title": "Canadian Public Genome Evolutionary Analyses",
+  "build_url": "https://github.com/fmaguire/ncov",
   "maintainers": [
-    {"name": "Finlay Maguire", "url": "finlaymagui.re"}
+    {"name": "Finlay Maguire (from work with CanCOGeN and ONCoV)", "url": "https://finlaymagui.re"}
   ],
   "colorings": [
     {
@@ -32,7 +32,7 @@
     },
     {
       "key": "pangolin_lineage",
-      "title": "Pangolin lienage",
+      "title": "Pangolin lineage",
       "type": "categorical"
     },
     {
@@ -119,6 +119,8 @@
     "country",
     "region",
     "clade_membership",
+    "pangolin_lineage",
+    "strain",
     "host",
     "author"
   ],

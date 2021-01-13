@@ -65,7 +65,7 @@ rule align_excluded:
         alignment = "results/excluded_alignment.fasta"
     log:
         "logs/align_excluded.txt"
-    threads: 2
+    threads: 4
     conda: config["conda_environment"]
     shell:
         """
@@ -145,7 +145,7 @@ rule align:
         "logs/align.txt"
     benchmark:
         "benchmarks/align.txt"
-    threads: 16
+    threads: 30
     conda: config["conda_environment"]
     shell:
         """
@@ -505,7 +505,7 @@ rule tree:
         "logs/tree_{build_name}.txt"
     benchmark:
         "benchmarks/tree_{build_name}.txt"
-    threads: 8
+    threads: 30
     resources:
         # Multiple sequence alignments can use up to 40 times their disk size in
         # memory, especially for larger alignments.
