@@ -1,11 +1,15 @@
 # Canadian SARS-CoV-2 Evolutionary Analysis
 
-An evolutionary and geographic analysis of all Canadian genome sequences in [GISAID](https://www.epicov.org/epi3/frontend#596041) (as of December 22nd). 
-While it is theoretically possible to analyse every sequenced SARS-CoV-2 genome from the entire world (282,538 as of December 22nd) [simultaneously](https://github.com/roblanf/sarscov2phylo), this is very computationally intensive 
+Analyses performed thanks to data sharing by [GISAID](gisaid.org), 
+open-source tools developed by [nextstrain](nextstrain.org) and hardware
+support from the [McArthur Lab](mcarthurbioinformatics.ca) in the Michael G. DeGroote Institute for Infectious Disease Research at McMaster University.
+
+An evolutionary and geographic analysis of Canadian genome sequences in [GISAID](https://www.epicov.org/epi3/frontend#596041).
+While it is theoretically possible to analyse every sequenced SARS-CoV-2 genome from the entire world [simultaneously](https://github.com/roblanf/sarscov2phylo), this is very computationally intensive 
 and complicates timely and detailed epidemiological analysis.
 Therefore, we use Nextstrain's [augur](https://github.com/nextstrain/augur) tool and [ncov workflow](https://github.com/nextstrain/ncov) to subsample these sequences in a way that prioritises including genomes from our area of interest
-(e.g., Canada) and genomes from the wider world that help us contextualise our genomes of interest.
-These tools also enable removal of low quality or duplicate genomes taking us from 282,538 input genomes to 7,863 genomes (2,418 from Canada with 5,445 genomes from the rest of the world as context).
+(e.g., Canada) and genomes from the wider world that help us contextualise these Canadian genomes.
+These tools also help us remove low quality and duplicate genomes.
 
 These analyses are then visualised in Nextstrain's [auspice](https://github.com/nextstrain/auspice) which includes many useful ways of interatively visualising features of the dataset e.g., distribution of mutation across the SARS-CoV-2 genome in Canada, possible international and interprovincial transmission events, diversity within each province and so on.
 

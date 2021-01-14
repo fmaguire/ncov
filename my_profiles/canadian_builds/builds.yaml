@@ -15,10 +15,10 @@ builds:
     #  region: North America
     #  country: Canada
     #  division: Nova Scotia
-    north-america_canada:
-        subsampling_scheme: canada
-        region: North America
-        country: Canada
+    #north-america_canada:
+    #    subsampling_scheme: canada
+    #    region: North America
+    #    country: Canada
 
 
 # Define custom subsampling logic for county-level builds.
