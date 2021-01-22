@@ -1,8 +1,8 @@
 # Canadian SARS-CoV-2 Evolutionary Analysis
 
-Analyses performed thanks to data sharing by [GISAID](gisaid.org), 
-data pre-processing and open-source tools from [nextstrain](nextstrain.org) ([augur](https://github.com/nextstrain/augur), [auspice](https://github.com/nextstrain/auspice), and [ncov workflow](https://github.com/nextstrain/ncov)
-computing infrastructure from the [McArthur Lab](mcarthurbioinformatics.ca) (Michael G. DeGroote Institute for Infectious Disease Research, McMaster University).
+Analyses performed thanks to data sharing by [GISAID](https://gisaid.org), 
+data pre-processing and open-source tools from [nextstrain](https://nextstrain.org) ([augur](https://github.com/nextstrain/augur), [auspice](https://github.com/nextstrain/auspice), and [ncov workflow](https://github.com/nextstrain/ncov)
+computing infrastructure from the [McArthur Lab](https://mcarthurbioinformatics.ca) (Michael G. DeGroote Institute for Infectious Disease Research, McMaster University).
 
 ## Highlighting Variants of Concern
 

@@ -128,5 +128,6 @@ files:
   auspice_config: "my_profiles/canadian_builds/my_auspice_config.json"
   description: "my_profiles/canadian_builds/my_description.md"
   colors: "my_profiles/canadian_builds/colors.tsv"
-  include: "my_profiles/canadian_builds/include_all_canada.txt"
-  # force include b117, b1351, b1367
+  include: "my_profiles/canadian_builds/include.txt"
+  # force include b117, b1351, p1, p2
+  # removed: b1367
