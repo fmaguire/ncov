@@ -12,7 +12,7 @@
     },
     {
       "key": "pangolin_lineage",
-      "title": "Pangolin Lineage",
+      "title": "PANGO Lineage",
       "type": "categorical"
     },
     {
@@ -109,9 +109,9 @@
     "color_by": "clade_membership",
     "distance_measure": "num_date",
     "geo_resolution": "division",
-    "map_triplicate": true,
+    "map_triplicate": false,
     "branch_label": "clade",
-    "transmission_lines": false    
+    "transmission_lines": false
   },
   "filters": [
     "recency",
