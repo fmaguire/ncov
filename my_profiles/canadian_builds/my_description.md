@@ -11,8 +11,10 @@ All the plots above are interactive and navigable, and the bar on the left provi
 For example, to just show Canadian genomes, click on the "Filter Data" box in the left-bar and select "Country -> Canada".
 
 The "UK" variant of concern (VOC) genomes in this representative subset of Canadian genomes (and global contextualising genomes) can be highlighted by filtering for "B.1.1.7", the "South African" VOC using "B.1.351", or the Brazilian VOC using "P.1", and "P.2".
-Alternatively, if you follow this [link](http://auspice.finlaymagui.re/ncov/north-america/canada?f_country=Canada&f_pangolin_lineage=B.1.1.7,B.1.351,B.1.1.28) 
+Alternatively, if you follow this [link](http://auspice.finlaymagui.re/ncov/north-america/canada?f_country=Canada&f_pangolin_lineage=B.1.1.7,B.1.351,P.1,P.2) 
 it will show a version of this page that is already filtered to highlight any public Canadian genomes with these mutations.
+
+For more information about the global distribution of specific lineages see [cov-lineages](https://cov-lineages.org/), similarly details of specific variants can be found via [covariants](https://covariants.org/).
 
 ## Background: Going from Sample to Analysis
 

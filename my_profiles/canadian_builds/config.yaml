@@ -11,11 +11,11 @@ configfile:
   - my_profiles/canadian_builds/builds.yaml # Pull in our list of desired builds
 
 config:
-  - sequences=data/2021_01_22/sequences_2021-01-22_08-52.fasta 
-  - metadata=data/2021_01_22/metadata_2021-01-22_08-51.tsv
+  - sequences=data/sequences_2021-01-29_07-55.fasta
+  - metadata=data/metadata_2021-01-30_10-36.tsv 
 
 # Set the maximum number of cores you want Snakemake to use for this pipeline.
-cores: 32
+cores: 50
 
 # Always print the commands that will be run to the screen for debugging.
 printshellcmds: True
