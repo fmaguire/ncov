@@ -92,3 +92,8 @@ Tierra del Fuego	AR
 Goiás	BR
 Mechelen	BE
 Limburg	NL
+Israel	IL
+Botswana	BW
+São Paulo	BR
+Region Metropolitana de Santiago	CL
+Valparaiso	CL
