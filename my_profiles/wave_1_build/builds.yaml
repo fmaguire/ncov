@@ -1,0 +1,136 @@
+builds:
+    #north-america_canada_ontario_toronto: # name of the build; this can be anything
+    #    subsampling_scheme: custom-city # use a custom subsampling scheme defined below
+    #    region: North America
+    #    country: Canada
+    #    division: Ontario
+    #    location: Toronto
+    #north-america_canada_ontario: # name of the build; this can be anything
+    #    subsampling_scheme: custom-province # use a custom subsampling scheme defined below
+    #    region: North America
+    #    country: Canada
+    #    division: Ontario
+    #    include: my_profiles/wave_1_build/include_all_ontario_wave_1.txt
+    north-america_canada_ontario: # name of the build; this can be anything
+      subsampling_scheme: custom-province # use a custom subsampling scheme defined below
+      region: North America
+      country: Canada
+      division: Ontario
+      #north-america_canada:
+      #    subsampling_scheme: canada
+      #    region: North America
+      #    country: Canada
+
+
+# Define custom subsampling logic for county-level builds.
+subsampling:
+  canada:
+    # Focal samples for country (trying to include all canadian samples)
+    country:
+      group_by: "division year month"
+      max_sequences: 5000
+      exclude: "--exclude-where 'country!={country}'"
+    # Contextual samples from country's region
+    region:
+      group_by: "country year month"
+      max_sequences: 5000
+      seq_per_group: 50
+      exclude: "--exclude-where 'country={country}' 'region!={region}'"
+      priorities:
+        type: "proximity"
+        focus: "country"
+    # Contextual samples from the rest of the world,
+    # excluding the current region to avoid resampling.
+    global:
+      group_by: "country year month"
+      max_sequences: 5000
+      seq_per_group: 20
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "country"
+
+  # Custom subsampling logic for divisions to sample all province samples
+  custom-province:
+    division:
+      group_by: "year month"
+      seq_per_group: 500 
+      exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division!={division}'"
+    # Contextual samples from division's country
+    country:
+      group_by: "division year month"
+      seq_per_group: 50
+      exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division={division}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    # Contextual samples from division's region
+    region:
+      group_by: "country year month"
+      seq_per_group: 25
+      exclude: "--exclude-where 'region!={region}' 'country={country}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    # Contextual samples from the rest of the world, excluding the current
+    global:
+      group_by: "country year month"
+      seq_per_group: 5
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+
+  custom-city:
+    # Focal samples for location
+    focal:
+      group_by: "year month"
+      seq_per_group: 5000 # increase if we need to
+      # Use augur filter's query argument to filter strains with pandas-style logic expressions.
+      # This can be easier to read than the corresponding filter by exclusion.
+      query: --query "(country == '{country}') & (division == '{division}') & (location == '{location}')"
+
+    # Samples that are genetically related to the focal samples
+    related:
+      group_by: "country year month"
+      seq_per_group: 20
+      exclude: "--exclude-where 'location={location}'"
+      priorities:
+        type: "proximity"
+        focus: "focal"
+
+    # Contextual samples from the rest of the world
+    contextual:
+      group_by: "country year month"
+      seq_per_group: 10
+      exclude: "--exclude-where 'location={location}'"
+
+# trait reconstruction
+traits:
+  north-america_canada_ontario: 
+    columns: ["region", "region_exposure", "country", "country_exposure", "division", "division_exposure"]
+  north-america_canada_novascotia: 
+    columns: ["region", "region_exposure", "country", "country_exposure", "division", "division_exposure"]
+  north-america_canada: 
+    columns: ["region", "region_exposure", "country", "country_exposure", "division", "division_exposure"]
+
+# incorporate exposure information
+exposure:
+  north-america_canada_ontario: 
+    trait: "division"
+    exposure: "division_exposure"
+  north-america_canada_novascotia: 
+    trait: "division"
+    exposure: "division_exposure"
+  north-america_canada: 
+    trait: "country"
+    exposure: "country_exposure"
+
+files:
+  auspice_config: "my_profiles/canadian_builds/my_auspice_config.json"
+  description: "my_profiles/canadian_builds/my_description.md"
+  colors: "my_profiles/canadian_builds/colors.tsv"
+  include: "my_profiles/wave_1_build/include_all_ontario_wave_1.txt"
+  #"my_profiles/canadian_builds/include.txt"
+  # force include b117, b1351, p1, p2
+  # removed: b1367
