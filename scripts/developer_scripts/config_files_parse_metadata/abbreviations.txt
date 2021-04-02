@@ -101,3 +101,15 @@ Brussels	BE
 Occitanie	FR
 Bulgaria	BG
 Tuscany	IT
+Setúbal	PT
+Veraguas	PA
+Cocle	PA
+Paraiba	PB
+Panama	PA
+Bolivia	BO
+Manabi	EC
+Colombia	CO
+Loja	EC
+Extremadura	ES
+Panama Oeste	PA
+Valle del Cauca	CO
