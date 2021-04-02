@@ -31,8 +31,13 @@
       "type": "categorical"
     },
     {
-      "key": "pangolin_lineage",
-      "title": "Pangolin lineage",
+      "key": "subclade_membership",
+      "title": "Emerging Nextstrain clade",
+      "type": "categorical"
+    },
+    {
+      "key": "pango_lineage",
+      "title": "PANGO lineage",
       "type": "categorical"
     },
     {
@@ -119,7 +124,8 @@
     "country",
     "region",
     "clade_membership",
-    "pangolin_lineage",
+    "subclade_membership",
+    "pango_lineage",
     "strain",
     "host",
     "author"
@@ -131,3 +137,4 @@
     "frequencies"
   ]
 }
+
