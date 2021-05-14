@@ -113,3 +113,28 @@ Loja	EC
 Extremadura	ES
 Panama Oeste	PA
 Valle del Cauca	CO
+Guanacaste	CR
+Los Rios CL	CL
+Wielkopolskie	(Wielkopolskie)
+Warminsko-Mazurskie	(Warminsko-Mazurskie)
+Pomorskie	(Pomorskie)
+Podlaskie	(Podlaskie)
+Maranhão	BR
+South Holland	NL
+Lubuskie	(Lubuskie)
+Espirito Santo	(Espirito Santo)
+Sergipe	(Sergipe)
+Navarra	ES
+Norte de Santander	CO
+O'Higgins	CL
+Malopolskie	(Malopolskie)
+Molise	(Molise)
+Sankt Gallen	CH
+Łódzkie	(Łódzkie)
+Slaskie	(Slaskie)
+Swietokrzyskie	(Swietokrzyskie)
+Zachodniopomorskie	(Zachodniopomorskie)
+Lisbon	PT
+Santa Catarina	BR
+North Brabant	NL
+Catalunya	ES

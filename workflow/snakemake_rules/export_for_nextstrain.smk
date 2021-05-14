@@ -42,6 +42,23 @@ rule clean_export_regions:
     shell:
         "rm -f {params}"
 
+# Build specific metadata
+rule extract_meta:
+    input:
+        alignment = rules.build_align.output.alignment,
+        metadata = _get_metadata_by_wildcards
+    output:
+        metadata = "results/{build_name}/extracted_metadata.tsv"
+    run:
+        from Bio import SeqIO 
+        import pandas as pd 
+
+        seq_names = [s.id for s in SeqIO.parse(input.alignment, 'fasta')]
+        all_meta = pd.read_csv(input.metadata, sep='\t', index_col=0, dtype=str)
+        extracted_meta = all_meta.loc[seq_names]
+        extracted_meta.to_csv(output.metadata, sep='\t')
+
+
 # Allows 'normal' run of export to be forced to correct lat-long & ordering
 # Runs an additional script to give a list of locations that need colors and/or lat-longs
 rule export_all_regions:
@@ -68,9 +85,6 @@ rule export_all_regions:
         """
 
 
-rule all_mutation_frequencies:
-    input: expand("results/{build_name}/nucleotide_mutation_frequencies.json", build_name=BUILD_NAMES)
-
 rule mutation_summary:
     message: "Summarizing {input.alignment}"
     input:
@@ -80,14 +94,14 @@ rule mutation_summary:
         reference = config["files"]["alignment_reference"],
         genemap = config["files"]["annotation"]
     output:
-        mutation_summary = "results/mutation_summary{origin}.tsv"
+        mutation_summary = "results/mutation_summary_{origin}.tsv"
     log:
-        "logs/mutation_summary{origin}.txt"
+        "logs/mutation_summary_{origin}.txt"
     benchmark:
-        "benchmarks/mutation_summary{origin}.txt"
+        "benchmarks/mutation_summary_{origin}.txt"
     params:
         outdir = "results/translations",
-        basename = "seqs{origin}"
+        basename = "seqs_{origin}"
     conda: config["conda_environment"]
     shell:
         """
@@ -143,18 +157,18 @@ except:
     # means that the Snakefile won't crash.
     deploy_origin = "by an unknown identity"
 
-rule deploy_to_staging:
+rule deploy:
     input:
         *rules.all_regions.input
     params:
-        slack_message = f"Deployed <https://nextstrain.org/staging/ncov|nextstrain.org/staging/ncov> {deploy_origin}",
-        s3_staging_url = config["s3_staging_url"]
+        slack_message = f"Deployed to {config['deploy_url']} {deploy_origin}",
+        deploy_url = config["deploy_url"]
     benchmark:
-        "benchmarks/deploy_to_staging.txt"
+        "benchmarks/deploy.txt"
     conda: config["conda_environment"]
     shell:
         """
-        nextstrain deploy {params.s3_staging_url:q} {input:q}
+        nextstrain deploy {params.deploy_url:q} {input:q}
 
         if [[ -n "$SLACK_TOKEN" && -n "$SLACK_CHANNEL" ]]; then
             curl https://slack.com/api/chat.postMessage \
@@ -166,6 +180,23 @@ rule deploy_to_staging:
         fi
         """
 
+rule upload_reference_sets:
+    input:
+        alignments = expand("results/{build_name}/aligned.fasta", build_name=config["builds"]),
+        metadata = expand("results/{build_name}/extracted_metadata.tsv", build_name=config["builds"])
+    params:
+        s3_bucket = config.get("S3_REF_BUCKET",''),
+        compression = config["S3_DST_COMPRESSION"]
+    run:
+        for fname in input.alignments:
+            cmd = f"./scripts/upload-to-s3 {fname} s3://{params.s3_bucket}/{os.path.dirname(fname).split('/')[-1]}_alignment.fasta.{params.compression} | tee -a {log}"
+            print("upload command:", cmd)
+            shell(cmd)
+        for fname in input.metadata:
+            cmd = f"./scripts/upload-to-s3 {fname} s3://{params.s3_bucket}/{os.path.dirname(fname).split('/')[-1]}_metadata.tsv.{params.compression} | tee -a {log}"
+            print("upload command:", cmd)
+            shell(cmd)
+					    
 
 rule upload:
     message: "Uploading intermediate files for specified origins to {params.s3_bucket}"
@@ -176,7 +207,9 @@ rule upload:
         expand("results/to-exclude_{origin}.txt", origin=config["S3_DST_ORIGINS"]),             # from `rule diagnostic`
         expand("results/masked_{origin}.fasta", origin=config["S3_DST_ORIGINS"]),               # from `rule mask`
         expand("results/filtered_{origin}.fasta", origin=config["S3_DST_ORIGINS"]),             # from `rule filter`
-        expand("results/mutation_summary_{origin}.tsv", origin=config["S3_DST_ORIGINS"]),       # from `rule mutation_summary`
+        expand("results/mutation_summary_{origin}.tsv", origin=config["S3_DST_ORIGINS"]),       # from `rule mutation_summary
+        expand("results/{build_name}/{build_name}_subsampled_sequences.fasta", build_name=config["builds"]),
+        expand("results/{build_name}/{build_name}_subsampled_metadata.tsv", build_name=config["builds"]),
     params:
         s3_bucket = config["S3_DST_BUCKET"],
         compression = config["S3_DST_COMPRESSION"]

@@ -68,5 +68,13 @@ e.g. Cruise Ship, Convention, Live animal market
 Surveillance
 International Traveller
 -
-Baseline surveillance
 NA
+Traveller
+surveillance
+unknwon
+Local case
+Travel
+Contact with a patient with travel history
+--
+None
+None

@@ -53,7 +53,6 @@ builds:
   europe:
     subsampling_scheme: nextstrain_region_grouped_by_country
     region: Europe
-    subclades: "nextstrain_profiles/nextstrain/subclades_EU.tsv"
     auspice_config: "nextstrain_profiles/nextstrain/europe_auspice_config.json"
   north-america:
     subsampling_scheme: nextstrain_region
@@ -131,8 +130,8 @@ traits:
 files:
   description: "nextstrain_profiles/nextstrain/nextstrain_description.md"
 
-# S3 and slack options are related to Nextstrain live builds and don't need to be modified for local builds
-s3_staging_url: s3://nextstrain-staging
+# Deploy and Slack options are related to Nextstrain live builds and don't need to be modified for local builds
+deploy_url: s3://nextstrain-data
 slack_token: ~
 slack_channel: "#ncov-gisaid-updates"
 
@@ -267,3 +266,7 @@ subsampling:
       priorities:
         type: "proximity"
         focus: "region_late"
+
+# Define frequencies parameters.
+frequencies:
+    recent_days_to_censor: 7
