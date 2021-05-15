@@ -27,7 +27,7 @@ subsampling:
     # Focal samples for country (trying to include all canadian samples)
     country:
       group_by: "division year month"
-      max_sequences: 1000
+      max_sequences: 500
       exclude: "--exclude-where 'country!={country}'"
     # Contextual samples from country's region
     region:
@@ -123,6 +123,11 @@ exposure:
   north-america_canada: 
     trait: "country"
     exposure: "country_exposure"
+
+inputs:
+  - name: Canada_2021_05_11_data
+    metadata: data/metadata_2021-05-11_09-01.tsv
+    sequences: data/sequences_2021-05-11_06-20.fasta
 
 files:
   auspice_config: "my_profiles/canadian_builds/my_auspice_config.json"
